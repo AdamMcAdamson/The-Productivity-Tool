@@ -1,0 +1,20 @@
+{
+  "name": "the-productivity-tool",
+  "version": "1.0.0",
+  "description": "A productivity tool developed during the UT Austin Coding Bootcamp March 2017 Full-time course.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AdamMcAdamson/The-Productivity-Tool.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AdamMcAdamson/The-Productivity-Tool/issues"
+  },
+  "homepage": "https://github.com/AdamMcAdamson/The-Productivity-Tool#readme"
+}
