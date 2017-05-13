@@ -1,7 +1,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
-// var userObj = require("./userObjExample_js.js");
+var userObj = require("./userObjExample_js.js");
 var db = require("./models");
 
 var PORT = process.env.PORT || 3000;
