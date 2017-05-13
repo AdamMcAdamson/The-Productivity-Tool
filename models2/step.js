@@ -1,16 +1,15 @@
 module.exports = function(sequelize, DataTypes) {
-    var Audio_rec = sequelize.define("Audio_rec", {
+    var Step = sequelize.define("Step", {
             name: {
                 type: DataTypes.STRING,
-                allowNull: false
+                allowNull: false,
             },
             position: {
                 type: DataTypes.INTEGER,
                 allowNull: false
             },
-            file_data: {
-                type: DataTypes.BLOB('long'),
-                allowNull: false
+            description: {
+                type: DataTypes.STRING(2000),
             },
             state: {
                 type: DataTypes.STRING,
@@ -22,16 +21,15 @@ module.exports = function(sequelize, DataTypes) {
                 }
             }
         },
-        {       
-            classMethods: {
-                associate: function(models) {
-                    Audio_rec.hasMany(models.Audio_time, {
-                        as: 'audio_times',
-                        foreignKey: "audio_rec_id"
-                    });
-                }
+        classMethods: {
+            associate: function(models) {
+                // Using additional options like CASCADE etc for demonstration
+                // Can also simply do Task.belongsTo(models.User);
+                Step.hasOne(models.Step_list, {
+                    foreignKey: "step_list_id"
+                });
             }
         }
     );
-    return Audio_rec;
+    return Step;
 }

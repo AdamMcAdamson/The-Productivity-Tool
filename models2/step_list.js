@@ -1,8 +1,8 @@
 module.exports = function(sequelize, DataTypes) {
-    var Topic = sequelize.define("Topic", {
-            topic_name: {
+    var Step_list = sequelize.define("Step_list", {
+            list_title: {
                 type: DataTypes.STRING,
-                allowNull: false
+                allowNull: false,
             },
             position: {
                 type: DataTypes.INTEGER,
@@ -18,16 +18,17 @@ module.exports = function(sequelize, DataTypes) {
                 }
             }
         },
-        {   
-            classMethods: {
-                associate: function(models) {
-                    Topic.hasMany(models.Task, {
-                        as: 'tasks',
-                        foreignKey: "topic_id"
-                    });
-                }
+        classMethods: {
+            associate: function(models) {
+                Step_list.hasMany(models.Step, {
+                    as: 'steps',
+                    foreignKey: "step_list_id"
+                });
+                Step_list.hasOne(models.Task, {
+                    foreignKey: "task_id"
+                });
+
             }
-        }
-    );
-    return Topic;
+        });
+    return Step_list;
 }

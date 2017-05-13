@@ -29,14 +29,12 @@ module.exports = function(sequelize, DataTypes) {
                 }
             }
         },
-        {
-            classMethods: {
-                associate: function(models) {
-                    User.hasMany(models.Topic, {
-                        as: 'topics',
-                        foreignKey: "user_id"
-                    });
-                }
+        classMethods: {
+            associate: function(models) {
+                User.hasMany(models.Topic, {
+                    as: 'topics',
+                    foreignKey: "user_id"
+                });
             }
         });
     return User;

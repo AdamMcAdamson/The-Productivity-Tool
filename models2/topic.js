@@ -2,7 +2,7 @@ module.exports = function(sequelize, DataTypes) {
     var Topic = sequelize.define("Topic", {
             topic_name: {
                 type: DataTypes.STRING,
-                allowNull: false
+                allowNull: false,
             },
             position: {
                 type: DataTypes.INTEGER,
@@ -18,16 +18,18 @@ module.exports = function(sequelize, DataTypes) {
                 }
             }
         },
-        {   
-            classMethods: {
-                associate: function(models) {
-                    Topic.hasMany(models.Task, {
-                        as: 'tasks',
-                        foreignKey: "topic_id"
-                    });
-                }
+        classMethods: {
+            associate: function(models) {
+                Topic.hasMany(models.Task, {
+                    as: 'tasks',
+                    foreignKey: "topic_id"
+                });
+                Topic.hasOne(models.User, {
+                    foreignKey: "user_id"
+                });
+
             }
         }
-    );
-    return Topic;
+    });
+return Topics;
 }
