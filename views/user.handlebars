@@ -1,19 +1,17 @@
-<header class="header"><h1>logged in</h1></header>
+<header class="header"><h1 class="un">User Name</h1></header>
 
-
+<div class="col-md-2"></div>
 <div class="container col-md-8" >
 	{{#each (each_sort uservar "topics" "position") as |topic topicindex|}}
-	{{topic.id}}
 		<div class="topic_div">
+			<h3>{{topic.topic_name}}</h3>
 			{{#each (each_sort topic "tasks" "priority") as |task taskindex|}}
-			{{task.id}}
 				<div class="tasks">
+				
 					{{#each (each_sort task "step_lists" "position") as |steplist steplistindex|}}
-					{{steplist.id}}
 						<ul class="list">
 							{{#each (each_sort steplist "steps" "position") as |step stepindex|}}
 								<li class="step">
-								{{step.id}}
 								</li>
 							{{/each}}
 						</ul>
@@ -23,5 +21,5 @@
 		</div>
 	{{/each}}
 </div>
-<script type="text/javascript">
-</script>
+<div class="col-md-2"></div>
+<script type="text/javascript" src=""></script>
