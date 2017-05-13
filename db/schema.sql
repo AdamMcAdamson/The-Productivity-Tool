@@ -4,8 +4,7 @@ USE product_db;
 
 CREATE TABLE users (
 	id INTEGER(11) AUTO_INCREMENT NOT NULL,
-	username_search VARCHAR(100) NOT NULL,
-    username_styled VARCHAR(100) NOT NULL,
+	username VARCHAR(100) NOT NULL,
     password VARCHAR(255) NOT NULL,
     display_name VARCHAR(100) NOT NULL,
     state VARCHAR(100) NOT NULL DEFAULT "active",

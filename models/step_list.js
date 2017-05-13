@@ -1,24 +1,13 @@
  module.exports = function(sequelize, DataTypes){
- 	var User = sequelize.define("User", {
-		username: {
+ 	var Step_list = sequelize.define("Step_list", {
+		list_title: {
 			type: DataTypes.STRING, 
 			allowNull: false,
-			validate: {
-				isAlphanumeric: true,
-				len: [4, 20]
-			}
 		},
-	    password: {
-			type: DataTypes.TEXT,
+	    position: {
+			type: DataTypes.INTEGER,
 			allowNull: false
 	    },
-	    display_name: {
-	    	type: DataTypes.STRING,
-	    	allowNull: false,
-	    	validate: {
-	    		len: [4, 40]
-	    	}
-	    }
 	    state: {
 	    	type: DataTypes.STRING,
 	    	allowNull: false,

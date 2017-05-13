@@ -1,22 +1,25 @@
  module.exports = function(sequelize, DataTypes){
- 	var User = sequelize.define("User", {
-		username: {
+ 	var Task = sequelize.define("Task", {
+		task_title: {
 			type: DataTypes.STRING, 
 			allowNull: false,
-			validate: {
-				isAlphanumeric: true,
-				len: [4, 20]
-			}
 		},
-	    password: {
-			type: DataTypes.TEXT,
+	    default_position: {
+			type: DataTypes.INTEGER,
 			allowNull: false
 	    },
-	    display_name: {
+	    priority: {
 	    	type: DataTypes.STRING,
 	    	allowNull: false,
+	    	defaultValue: "normal",
 	    	validate: {
-	    		len: [4, 40]
+	    		in: [["normal", "low", "medium", "high"]]
+	    	}
+	    },
+	    end_date: {
+	    	type: DataTypes.DATE,
+	    	validate: {
+	    		isAfter: Sequelize.NOW
 	    	}
 	    }
 	    state: {

@@ -1,23 +1,16 @@
  module.exports = function(sequelize, DataTypes){
- 	var User = sequelize.define("User", {
-		username: {
+ 	var Audio_rec = sequelize.define("Audio_rec", {
+		name: {
 			type: DataTypes.STRING, 
 			allowNull: false,
-			validate: {
-				isAlphanumeric: true,
-				len: [4, 20]
-			}
 		},
-	    password: {
-			type: DataTypes.TEXT,
+	    position: {
+			type: DataTypes.INTEGER,
 			allowNull: false
 	    },
-	    display_name: {
-	    	type: DataTypes.STRING,
-	    	allowNull: false,
-	    	validate: {
-	    		len: [4, 40]
-	    	}
+	    file_data: {
+	    	type: DataTypes.BLOB('long'),
+	    	allowNull: false
 	    }
 	    state: {
 	    	type: DataTypes.STRING,
