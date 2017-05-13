@@ -2,7 +2,7 @@ module.exports = function(sequelize, DataTypes) {
     var Audio_time = sequelize.define("Audio_time", {
             name: {
                 type: DataTypes.STRING,
-                allowNull: false
+                allowNull: false,
             },
             summary: {
                 type: DataTypes.STRING
@@ -28,6 +28,15 @@ module.exports = function(sequelize, DataTypes) {
                         ["active", "disabled"]
                     ]
                 }
+            }
+        },
+        classMethods: {
+            associate: function(models) {
+                // Using additional options like CASCADE etc for demonstration
+                // Can also simply do Task.belongsTo(models.User);
+                Audio_time.hasOne(models.Audio_rec, {
+                    foreignKey: "audio_rec_id"
+                });
             }
         }
     );

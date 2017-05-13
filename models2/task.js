@@ -2,7 +2,7 @@ module.exports = function(sequelize, DataTypes) {
     var Task = sequelize.define("Task", {
             task_title: {
                 type: DataTypes.STRING,
-                allowNull: false
+                allowNull: false,
             },
             default_position: {
                 type: DataTypes.INTEGER,
@@ -20,7 +20,7 @@ module.exports = function(sequelize, DataTypes) {
             end_date: {
                 type: DataTypes.DATE,
                 validate: {
-                    isAfter: sequelize.NOW
+                    isAfter: Sequelize.NOW
                 }
             },
             state: {
@@ -32,20 +32,22 @@ module.exports = function(sequelize, DataTypes) {
                     ]
                 }
             }
-        },
-        {
-            classMethods: {
-                associate: function(models) {
-                    Task.hasMany(models.Audio_rec, {
-                        as: 'audio_recs',
-                        foreignKey: "task_id"
-                    });
+        },,
+        classMethods: {
+            associate: function(models) {
+                Task.hasMany(models.Audio_rec, {
+                    as: 'audio_recs',
+                    foreignKey: "task_id"
+                });
 
-                    Task.hasMany(models.Step_list, {
-                    	ad: 'step_lists',
-                    	foreignKey: 'task_id'
-                    });
-                }
+                Task.hasMany(models.Step_list, {
+                	ad: 'step_lists',
+                	foreignKey: 'task_id'
+                });
+
+                Task.hasOne(models.Topic, {
+                    foreignKey: "topic_id"
+                });
             }
         });
     return Task;
