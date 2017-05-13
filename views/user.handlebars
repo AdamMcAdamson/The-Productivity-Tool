@@ -1,13 +1,22 @@
+<script type="text/javascript" src=""></script>
 <header class="header"><h1>logged in</h1></header>
 
 <div class="container col-md-8" >
-	{{#each topics}}
-		<div>
-			<ul>
-				{{#each tasks}}
-				<li>
-					{{#each step_lists}}
-				</li>
-			</ul>
+	{{#each {{#each_sort uservar "topics"}}{{/each_sort}}}}
+		<div class="topic_div">
+			{{#each {{#each_sort this "tasks" "priority"}}{{/each_sort}}}}
+				<div>
+					{{#each {{#each_sort this "step_lists"}}{{/each_sort}}}}
+						<ul>
+							{{#each {{#each_sort this "steps" "priority"}}{{/each_sort}}}}
+								<li>
+									{{this.name}}
+								</li>
+							{{/each}}
+						</ul>
+					{{/each}}
+				</div>
+			{{/each}}
 		</div>
+	{{/each}}
 </div>
