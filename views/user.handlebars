@@ -1,16 +1,19 @@
-<script type="text/javascript" src=""></script>
 <header class="header"><h1>logged in</h1></header>
 
+
 <div class="container col-md-8" >
-	{{#each {{#each_sort uservar "topics"}}{{/each_sort}}}}
+	{{#each (each_sort uservar "topics" "position") as |topic topicindex|}}
+	{{topic.id}}
 		<div class="topic_div">
-			{{#each {{#each_sort this "tasks" "priority"}}{{/each_sort}}}}
-				<div>
-					{{#each {{#each_sort this "step_lists"}}{{/each_sort}}}}
-						<ul>
-							{{#each {{#each_sort this "steps" "priority"}}{{/each_sort}}}}
-								<li>
-									{{this.name}}
+			{{#each (each_sort topic "tasks" "priority") as |task taskindex|}}
+			{{task.id}}
+				<div class="tasks">
+					{{#each (each_sort task "step_lists" "position") as |steplist steplistindex|}}
+					{{steplist.id}}
+						<ul class="list">
+							{{#each (each_sort steplist "steps" "position") as |step stepindex|}}
+								<li class="step">
+								{{step.id}}
 								</li>
 							{{/each}}
 						</ul>
@@ -20,3 +23,5 @@
 		</div>
 	{{/each}}
 </div>
+<script type="text/javascript">
+</script>
