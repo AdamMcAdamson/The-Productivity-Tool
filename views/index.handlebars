@@ -1,7 +1,8 @@
 <header class="header"><h1>TPT</h1></header>
 <div class="col-md-2"></div>
 <div class="container col-md-8">
-	<form>
+	<div class="row">
+    <form>
 		<div class="form-group">
         <h2>login</h2>
     	<label><b>Username</b></label>
@@ -13,10 +14,27 @@
         </div>
         <div class="form-group">
     	<button type="submit" id="submitBtn">Login</button>
-    	<h3><input type="checkbox" checked="checked"> Remember me</h3>
-        </div>
+<!--     	<h3><input type="checkbox" checked="checked"> Remember me</h3>
+ -->        </div>
   		</div>
 	</form>
+    <div class="row">
+    <form>
+        <div class="form-group">
+        <h2>Sign Up</h2>
+        <label><b>Username</b></label>
+        <input id="signName" type="text" placeholder="Enter Username" name="signName" required>
+        </div>
+        <div class="form-group">
+        <label><b>Password</b></label>
+        <input id="signPass" type="password" placeholder="Enter Password" name="signPass" required>
+        </div>
+        <div class="form-group">
+        <button type="submit" id="SignupBtn">Done</button>
+        </div>
+        </div>
+    </form>
+    </div>
 </div>
 <div class="col-md-2"></div>
 <script type="text/javascript">
@@ -27,6 +45,25 @@
             password : $("#uPass").val().trim()
         };
         $.post("/login",user)
+        .done(function(data) {
+            if(data.status !== "success"){
+                console.log("user verification failed");
+            }
+        });
+    });
+    $("#signupBtn").on("click", function(event) {
+        event.preventDefault();
+        var input = {}
+        input.data = {
+            username : $("#signName").val().trim(),
+            display_name : $("#signName").val().trim(),
+            password : $("#signPass").val().trim()
+        };
+        $.ajax({
+            type: "POST",
+            url: "/api/add/user",
+            data: input
+        })
         .done(function(data) {
             if(data.status !== "success"){
                 console.log("user verification failed");
