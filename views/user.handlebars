@@ -2,7 +2,9 @@
 </script>
 <header class="header"><h1 class="un">{{uservar.display_name}}</h1>
 <form style="float: right;"></form>
-<button class="btn" id="newTopic">Create a new Topic</button>
+<label><b>New Topic</b></label>
+<input id="newtopicName" type="text" placeholder="Enter Topic" name="newTopic" required>
+<button type="submit" id="newTopic">Submit</button>
 </header>
 
 <div class="col-md-2"></div>
@@ -13,19 +15,6 @@
 			{{#each (each_sort topic "tasks" "priority") as |task taskindex|}}
 				<div class="Atasks">
 					<button class="btn" id="btn-task_{{task.id}}" data-toggle="modal" data-target="#myModal"><h4>{{task.task_title}}</h4></button>
-					<section class="Btasks" id="section-task_{{task.id}}">
-					{{#each (each_sort task "step_lists" "position") as |steplist steplistindex|}}
-						<button class="btn" id="btn-steplist_{{steplist.id}}"><h5>{{steplist.list_title}}</h5></button>
-						<ul class="list" id="section-steplist_{{steplist.id}}">
-							{{#each (each_sort steplist "steps" "position") as |step stepindex|}}
-								<li class="step" id="{{step.id}}">
-								{{step.name}}:  {{step.description}}
-								</li>
-							{{/each}}
-						</ul>
-						<button class="hide">HIDE</button>
-					{{/each}}
-					</section>
 				</div>
 			{{/each}}
 		</div>
