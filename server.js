@@ -3,7 +3,12 @@ var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
 var userObj = require("./userObjExample_js.js");
 var db = require("./models");
+		
+// Testing --------------------------------------
 
+var apiFunc = require('./routes/apiFunctions.js');
+
+// ----------------------------------------------
 var PORT = process.env.PORT || 3000;
 
 var app = express();
@@ -92,13 +97,11 @@ require("./routes/userApiRoutes.js")(app);
 db.sequelize.sync({ force: true }).then(function() {
     app.listen(PORT, function() {
         console.log("App listening on PORT " + PORT);
+
+		apiFunc.getInfo("Task");
+
     });
 });
 
-
-
-// var apiFunc = require('./routes/apiFunctions.js');
-
-// apiFunc.getInfo("Task");
 
 

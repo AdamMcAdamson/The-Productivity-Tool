@@ -76,14 +76,12 @@ module.exports = {
     },
 
 	getInfo: function(type, id, data, callback) {
-
 		var dbType = this.handleType(type);
 		var includeObj = null;
 		var layoutIndex = -1;
 		var arraySideIndex = -1
 		var layout = this.schemaLayout;
 
-		console.log(layout.length);
 		for (var i = 0; i < layout.length; i ++){
 			if(layoutIndex < 0){
 				var layoutIndex = layout[i].indexOf(type);
@@ -91,19 +89,28 @@ module.exports = {
 			}	
 		}
 
+		
+		console.log(layout.length);
+		console.log(arraySideIndex);
+		console.log(layoutIndex);
+
 		var currentObj = [];
 		var previousObj = [];
 
 		for(var i = arraySideIndex; i < layout.length; i ++){
-			for(var j = layout[0].length; j > layoutIndex; j--){
+			for(var j = layout[0].length-1; j > layoutIndex; j--){
+				console.log(layout[i][j] + ' | i: ' + i + " | j: " + j);
 				if(layout[i][j] !== null){
 					currentObj[j-layoutIndex] = {model: layout[i][j]};
-					if(previousObj.length <= i && previousObj.length !== 0){
-						currentObj[j-layoutIndex].include = Object.assign({}, previousObj[i]);
-						console.log("including: " + currentObj[j-layoutIndex].include + " | i: " + i + " | j: " + j);
+					console.log(previousObj + "   " + previousObj.length);
+					if(previousObj.length < j && previousObj.length !== 0){
+						currentObj[j-layoutIndex].include = [Object.assign({}, previousObj)];
+						console.log("including: " + JSON.stringify(currentObj[j-layoutIndex].include) + " | i: " + i + " | j: " + j);
+					} else {
+
 					}
 				}
-				previousObj = [Object.assign({}, currentObj)];
+				previousObj[i] = Object.assign({}, currentObj);
 			}
 		}
 		var includeObj = currentObj;
