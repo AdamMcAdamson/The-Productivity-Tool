@@ -17,6 +17,22 @@
         </div>
   		</div>
 	</form>
+    <form>
+        <div class="form-group">
+        <h2>Sign Up</h2>
+        <label><b>Username</b></label>
+        <input id="signName" type="text" placeholder="Enter Username" name="uname" required>
+        </div>
+        <div class="form-group">
+        <label><b>Password</b></label>
+        <input id="signPass" type="password" placeholder="Enter Password" name="psw" required>
+        </div>
+        <div class="form-group">
+        <button type="submit" id="SignupBtn">Done</button>
+        <h3><input type="checkbox" checked="checked"> Remember me</h3>
+        </div>
+        </div>
+    </form>
 </div>
 <div class="col-md-2"></div>
 <script type="text/javascript">
@@ -27,6 +43,21 @@
             password : $("#uPass").val().trim()
         };
         $.post("/login",user)
+        .done(function(data) {
+            if(data.status !== "success"){
+                console.log("user verification failed");
+            }
+        });
+    });
+    $("#signupBtn").on("click", function(event) {
+        event.preventDefault();
+        var input = {}
+        input.data = {
+            username : $("#signName").val().trim(),
+            display_name : $("#signName").val().trim(),
+            password : $("#signPass").val().trim()
+        };
+        $.post("/api/add/user", input)
         .done(function(data) {
             if(data.status !== "success"){
                 console.log("user verification failed");
